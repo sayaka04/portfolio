@@ -1,0 +1,158 @@
+  /* Base Setup */
+  html.lenis,
+  html.lenis body {
+      height: auto;
+  }
+
+  body {
+      margin: 0;
+      background: #020817;
+      font-family: 'Space Grotesk', sans-serif;
+      color: #f8fafc;
+  }
+
+  /* Canvas & Layers */
+  #dust-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+  }
+
+  .ambient-glow {
+      position: fixed;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.6;
+      animation: float 10s infinite ease-in-out alternate;
+      will-change: transform;
+  }
+
+  .content {
+      position: relative;
+      z-index: 10;
+      overflow-x: hidden;
+  }
+
+  /* Iridescent Glassmorphism */
+  .glass {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.02);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes float {
+      0% {
+          transform: translateY(0) scale(1);
+      }
+
+      100% {
+          transform: translateY(-30px) scale(1.1);
+      }
+  }
+
+  .hover-glass:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+      box-shadow: 0 15px 45px rgba(139, 92, 246, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .audio-pulse {
+      animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+
+      0%,
+      100% {
+          opacity: 0.4;
+      }
+
+      50% {
+          opacity: 1;
+      }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* SCROLL BAR */
+  /* ==========================================================================
+   CUSTOM SYSTEM SCROLLBAR
+   ========================================================================== */
+
+  /* Width and height of the scrollbar track */
+  ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+      /* For horizontal scrolling if needed */
+  }
+
+  /* The background track - kept dark and translucent to match your video background */
+  ::-webkit-scrollbar-track {
+      background: rgba(2, 6, 23, 0.4);
+      backdrop-filter: blur(8px);
+  }
+
+  /* The actual draggable thumb - subtle slate grey by default */
+  ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+  }
+
+  /* Glows into your specific application accent color (#38BDF8) on hover */
+  ::-webkit-scrollbar-thumb:hover {
+      background: #38BDF8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  }
+
+  /* Firefox Support */
+  @supports (scrollbar-width: thin) {
+      * {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(148, 163, 184, 0.3) rgba(2, 6, 23, 0.4);
+      }
+  }

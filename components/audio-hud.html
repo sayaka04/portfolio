@@ -1,0 +1,31 @@
+<div
+  id="audio-hud-container"
+  class="fixed bottom-6 right-6 z-50 flex flex-col-reverse items-end gap-3 pointer-events-auto"
+>
+  <div
+    id="audio-hud"
+    class="glass rounded-full px-4 py-2 flex items-center gap-3 text-xs tracking-widest uppercase text-slate-400 font-semibold border border-white/10 cursor-pointer select-none hover:border-cyan-400/50 transition-colors sfx-trigger"
+  >
+    <div id="audio-indicator" class="w-2 h-2 rounded-full bg-slate-500"></div>
+    <span id="audio-text">Audio Off</span>
+  </div>
+
+  <div
+    id="yt-card"
+    class="glass rounded-2xl p-2.5 border border-white/10 flex flex-col gap-2 items-center shadow-2xl opacity-40 transition-all duration-500 scale-95 origin-bottom-right sfx-trigger"
+  >
+    <div class="w-40 h-24 rounded-lg overflow-hidden border border-white/5 relative bg-black/40">
+      <div id="yt-player"></div>
+    </div>
+    <div class="text-[10px] tracking-wider text-slate-400 font-bold uppercase text-center max-w-[160px] leading-tight">
+      Playing Right Now:
+      <br />
+      <span
+        id="yt-title"
+        class="text-cyan-400 font-medium tracking-normal normal-case block mt-0.5 px-1 truncate max-w-[150px]"
+      >
+        Loading track info...
+      </span>
+    </div>
+  </div>
+</div>

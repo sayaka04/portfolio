@@ -1,0 +1,40 @@
+<section class="h-screen flex items-center justify-center px-6 relative">
+  <div class="glass rounded-[2rem] p-10 md:p-12 text-center max-w-3xl w-full fx-element fx-zoom-blur">
+    <!-- Status Indicator -->
+    <div
+      class="inline-block px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs md:text-sm font-semibold tracking-widest uppercase mb-6"
+    >
+      Encrypted Workspace
+    </div>
+
+    <!-- Title -->
+    <h1
+      class="text-4xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-500 uppercase tracking-tight"
+    >
+      Enter Access Key
+    </h1>
+
+    <!-- Context -->
+    <p class="text-slate-400 text-base md:text-xl font-light tracking-wide mb-8 max-w-xl mx-auto">
+      Sensitive assets, media, and credentials are encrypted using AES-256. Provide your decryption key to unlock
+      restricted content.
+    </p>
+
+    <!-- Input and Button -->
+    <div class="max-w-md mx-auto space-y-4">
+      <input
+        type="password"
+        id="decryption-key-input"
+        placeholder="Enter AES-256 Key"
+        class="w-full px-5 py-3.5 rounded-xl border border-white/10 bg-black/40 text-white placeholder-slate-500 text-center text-sm md:text-base focus:outline-none focus:border-cyan-400/60 transition-all duration-300"
+      />
+
+      <button
+        id="decrypt-assets-btn"
+        class="w-full px-8 py-4 rounded-xl border border-cyan-400/30 bg-cyan-400/10 hover:bg-cyan-400/20 text-cyan-300 text-xs md:text-sm tracking-widest uppercase transition-all duration-300 font-bold shadow-[0_0_15px_rgba(6,182,212,0.15)] active:scale-95"
+      >
+        Decrypt Assets
+      </button>
+    </div>
+  </div>
+</section>

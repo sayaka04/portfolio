@@ -1,0 +1,5 @@
+/* Add this to graphics.css */
+.fx-element {
+  opacity: 0;
+  will-change: transform, opacity, filter, clip-path;
+}

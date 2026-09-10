@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+
+    <script src="js/tailwind/tailwind-3.4.17.js"></script>
+
+    <link rel="stylesheet" href="css/lenis@1.1.20/dist/lenis.css" />
+    <script src="js/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <script src="js/gsap@3/dist/gsap.min.js"></script>
+    <script src="js/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+    <!-- Initialize CSS -->
+    <link rel="stylesheet" href="css/graphics.css" />
+
+    <!-- Initialize JavaScript Components -->
+    <script src="js/aes256.js"></script>
+    <script src="js/image.js"></script>
+    <script src="js/youtube.js"></script>
+    <script src="js/lenis.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/graphics.js"></script>
+    <script src="js/gsap-transitions.js"></script>
+    <link rel="stylesheet" href="css/gsap-transitions.css" />
+  </head>
+
+  <body>
+    <div id="main-placeholder"></div>
+
+    <script>
+      async function loadSiteComponents() {
+        try {
+          // 1. Load main.html FIRST, because it contains the other placeholders
+          const mainResponse = await fetch("components/main.html");
+          if (!mainResponse.ok) throw new Error("Failed to load main.html");
+          const mainData = await mainResponse.text();
+          document.getElementById("main-placeholder").innerHTML = mainData;
+
+          // 2. NOW that the placeholders exist, load the rest in parallel
+          const childPartials = [
+            {
+              file: "components/audio-hud.html",
+              targetId: "audio-hud-placeholder",
+            },
+            {
+              file: "components/header.html",
+              targetId: "header-placeholder",
+            },
+            {
+              file: "components/initialize-image.html",
+              targetId: "initialize-image-placeholder",
+            },
+            { file: "components/certifications.html", targetId: "certifications-placeholder" },
+            {
+              file: "components/initialize-audio.html",
+              targetId: "initialize-audio-placeholder",
+            },
+            {
+              file: "components/profile.html",
+              targetId: "profile-placeholder",
+            },
+            {
+              file: "components/experience.html",
+              targetId: "experience-placeholder",
+            },
+            {
+              file: "components/educational-background.html",
+              targetId: "educational-background-placeholder",
+            },
+            {
+              file: "components/projects.html",
+              targetId: "projects-placeholder",
+            },
+          ];
+
+          const fetchPromises = childPartials.map((partial) => {
+            return fetch(partial.file)
+              .then((response) => {
+                if (!response.ok) throw new Error(`Failed to load ${partial.file}`);
+                return response.text();
+              })
+              .then((data) => {
+                document.getElementById(partial.targetId).innerHTML = data;
+              });
+          });
+
+          // Wait for all child partials to load
+          await Promise.all(fetchPromises);
+          console.log("All partials loaded successfully!");
+
+          // 3. Initialize ALL logic now that the DOM is 100% built
+          initializeWebsiteLogic();
+        } catch (error) {
+          console.error("Error loading partials:", error);
+        }
+      }
+
+      // Start the loading sequence
+      loadSiteComponents();
+
+      // Your master function for all JS logic
+      function initializeWebsiteLogic() {
+        fetchTextBase64Strings();
+        fetchImageBase64Strings();
+        initializeAssetDecryption();
+        initializeAudio();
+        initializeLenis();
+        initializeGraphics();
+        initializeGSAPTransitions();
+
+        // Tell GSAP to recalculate scroll positions after 1000ms
+        // to give images time to render and establish their heights.
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 2000);
+
+        // Dynamically load the YouTube API ONLY after the DOM is ready
+        const ytScriptTag = document.createElement("script");
+        ytScriptTag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(ytScriptTag);
+      }
+    </script>
+  </body>
+</html>
